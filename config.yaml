@@ -1,0 +1,44 @@
+hod_filepath: 'hods_noab_500.hdf5'  # file containing HOD parameters -- here we use the 500 MC-sampled HODs without assembly bias from Britt et al. 2024
+hod_index: 42                       # index of the HOD to load from the above file
+nthread: 16                         # number of threads used by run_hod()
+
+
+# for details on AbacusHOD usage, refer to https://abacusutils.readthedocs.io/en/latest/hod.html
+
+sim_params:
+    sim_name: 'AbacusSummit_base_c000_ph000'                      # which Abacus simulation box to use
+    sim_dir: '/global/cfs/cdirs/desi/cosmosim/Abacus/'            # path to simulation files (e.g. the NERSC path is given here)
+    output_dir: '/my/output/path/'                                # where to output galaxy mocks, if write_to_disk is True
+    subsample_dir: '/my/subsample/path/'                          # path to halo/particle subsamples (produced when you run prepare_sim.py in abacusutils)
+    z_mock: 0.3                                                   # which redshift to load
+    
+    
+hod_params:
+    tracer_flags:                  # select desired tracers -- here we populate with LRGs only
+        LRG: True
+        ELG: False
+        QSO: False
+    want_AB: True                  # whether assembly bias is needed in the HOD
+    want_ranks: False              # whether to use flexible satellite profiles -- here we choose False to follow the DM profile
+    want_rsd: True                 # whether to implement redshift space distortions
+    write_to_disk: False           # whether to write galaxy mocks to the output_dir specified in sim_params
+
+    # set the initial HOD parameters for LRGs -- these can be changed before calling run_mock()
+    LRG_params:
+        logM_cut: 12.6
+        logM1: 13.82
+        sigma: 0.2121              # AbacusHOD definition of sigma is a factor of sqrt(2) smaller than sigma_logM -- see Yuan et al. 2021 (arXiv:2110.11412) equation 1
+        alpha: 1.0
+        kappa: 0.0
+        alpha_c: 0
+        alpha_s: 1
+        s: 0
+        s_v: 0
+        s_p: 0
+        s_r: 0
+        Acent: 0
+        Asat: 0
+        Bcent: 0
+        Bsat: 0
+        ic: 0.316
+    

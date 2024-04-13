@@ -1,5 +1,5 @@
 # stochasticity_hods
-Example script for generating mock galaxy catalogs from halo occupation distributions (HODs) described in Britt et al. 2024.
+Example script for generating mock galaxy catalogs from halo occupation distributions (HODs) described in Britt et al. 2024 (https://arxiv.org/abs/2404.04252).
 
 Included are the following files:
 
